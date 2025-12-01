@@ -4,3 +4,4 @@
 // La classe est abstraite, pas d'implémentation nécessaire ici
 
 
+

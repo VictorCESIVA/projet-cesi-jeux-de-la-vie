@@ -158,3 +158,4 @@ namespace Patterns {
 #endif // PATTERNS_HPP
 
 
+

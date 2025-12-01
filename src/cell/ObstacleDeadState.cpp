@@ -5,3 +5,4 @@ std::unique_ptr<CellState> ObstacleDeadState::clone() const {
 }
 
 
+

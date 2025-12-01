@@ -26,3 +26,4 @@ std::unique_ptr<CellState> ClassicRule::computeNextState(bool currentlyAlive, in
 }
 
 
+

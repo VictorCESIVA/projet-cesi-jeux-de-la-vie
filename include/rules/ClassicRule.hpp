@@ -22,3 +22,4 @@ public:
 #endif // CLASSICRULE_HPP
 
 
+

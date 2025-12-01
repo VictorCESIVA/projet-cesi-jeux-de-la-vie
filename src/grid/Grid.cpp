@@ -244,3 +244,4 @@ void Grid::placePattern(const std::vector<std::vector<bool>>& pattern, int start
 }
 
 
+
