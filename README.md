@@ -307,6 +307,24 @@ Les tests vérifient :
 
 Projet réalisé dans le cadre du module **POO** - CESI
 
+## 📦 Créer une release
+
+Pour créer un dossier release avec tous les exécutables et DLLs :
+
+```powershell
+# Compiler le projet
+mkdir build; cd build
+cmake .. -G "MinGW Makefiles"
+mingw32-make -j4
+
+# Le dossier release/ contiendra :
+# - gameoflife_console.exe
+# - gameoflife_gui.exe  
+# - gameoflife_tests.exe
+# - Toutes les DLLs nécessaires
+# - Les fichiers d'exemple
+```
+
 ## 📄 Licence
 
 Ce projet est sous licence MIT - voir le fichier [LICENSE](LICENSE) pour plus de détails.
