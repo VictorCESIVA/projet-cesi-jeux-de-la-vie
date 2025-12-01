@@ -84,7 +84,8 @@ void GUIController::render() {
     // Panneau info en haut avec statistiques
     m_renderer.renderInfoPanel(m_game.getIteration(), m_game.isRunning(), 
                                m_updateInterval, m_game.getGrid().isToroidal(), m_parallel,
-                               m_game.countAliveCells(), m_game.isStable());
+                               m_game.countAliveCells(), m_game.isStable(),
+                               m_game.getGrid().getWidth(), m_game.getGrid().getHeight());
     
     // Aide si activée
     if (m_showHelp) {
@@ -141,6 +142,54 @@ void GUIController::handleKeyPress(const sf::Event& event) {
             saveCurrentState();
             break;
             
+        case sf::Keyboard::LBracket:
+            // [ : Diminue la taille de la grille
+            decreaseGridSize(5);
+            break;
+            
+        case sf::Keyboard::RBracket:
+            // ] : Augmente la taille de la grille
+            increaseGridSize(5);
+            break;
+            
+        case sf::Keyboard::Up:
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) ||
+                sf::Keyboard::isKeyPressed(sf::Keyboard::RControl)) {
+                // Ctrl+Haut : Augmente la hauteur
+                resizeGrid(m_game.getGrid().getWidth(), m_game.getGrid().getHeight() + 5);
+            }
+            break;
+            
+        case sf::Keyboard::Down:
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) ||
+                sf::Keyboard::isKeyPressed(sf::Keyboard::RControl)) {
+                // Ctrl+Bas : Diminue la hauteur
+                resizeGrid(m_game.getGrid().getWidth(), m_game.getGrid().getHeight() - 5);
+            }
+            break;
+            
+        case sf::Keyboard::Right:
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) ||
+                sf::Keyboard::isKeyPressed(sf::Keyboard::RControl)) {
+                // Ctrl+Droite : Augmente la largeur
+                resizeGrid(m_game.getGrid().getWidth() + 5, m_game.getGrid().getHeight());
+            } else {
+                // Droite seule : Pattern suivant
+                nextPattern();
+            }
+            break;
+            
+        case sf::Keyboard::Left:
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) ||
+                sf::Keyboard::isKeyPressed(sf::Keyboard::RControl)) {
+                // Ctrl+Gauche : Diminue la largeur
+                resizeGrid(m_game.getGrid().getWidth() - 5, m_game.getGrid().getHeight());
+            } else {
+                // Gauche seule : Pattern précédent
+                previousPattern();
+            }
+            break;
+            
         case sf::Keyboard::Add:
         case sf::Keyboard::Equal:
             // Augmente la vitesse (diminue l'intervalle)
@@ -155,14 +204,6 @@ void GUIController::handleKeyPress(const sf::Event& event) {
             if (m_updateInterval < 1000) {
                 m_updateInterval += 20;
             }
-            break;
-            
-        case sf::Keyboard::Left:
-            previousPattern();
-            break;
-            
-        case sf::Keyboard::Right:
-            nextPattern();
             break;
             
         // Sélection de patterns par numéro
@@ -331,4 +372,57 @@ void GUIController::handleMouseWheel(const sf::Event& event) {
             m_renderer.setCellSize(currentSize - 2);
         }
     }
+}
+
+void GUIController::resizeGrid(int newWidth, int newHeight) {
+    // Limites de taille
+    if (newWidth < 10) newWidth = 10;
+    if (newHeight < 10) newHeight = 10;
+    if (newWidth > 200) newWidth = 200;
+    if (newHeight > 200) newHeight = 200;
+    
+    Grid& oldGrid = m_game.getGrid();
+    int oldWidth = oldGrid.getWidth();
+    int oldHeight = oldGrid.getHeight();
+    
+    // Si pas de changement, on sort
+    if (newWidth == oldWidth && newHeight == oldHeight) return;
+    
+    // Crée une nouvelle grille
+    auto newGrid = std::make_unique<Grid>(newWidth, newHeight, oldGrid.isToroidal());
+    
+    // Copie les cellules existantes (celles qui rentrent dans la nouvelle taille)
+    int copyWidth = std::min(oldWidth, newWidth);
+    int copyHeight = std::min(oldHeight, newHeight);
+    
+    for (int y = 0; y < copyHeight; ++y) {
+        for (int x = 0; x < copyWidth; ++x) {
+            const Cell& oldCell = oldGrid.getCell(x, y);
+            if (oldCell.isAlive()) {
+                if (oldCell.isObstacle()) {
+                    newGrid->setCellState(x, y, std::make_unique<ObstacleAliveState>());
+                } else {
+                    newGrid->setCellState(x, y, std::make_unique<AliveState>());
+                }
+            } else if (oldCell.isObstacle()) {
+                newGrid->setCellState(x, y, std::make_unique<ObstacleDeadState>());
+            }
+        }
+    }
+    
+    // Met à jour la grille initiale pour le reset
+    m_initialGrid = std::make_unique<Grid>(*newGrid);
+    
+    // Remplace la grille dans le jeu
+    m_game.reset(std::move(newGrid));
+    
+    std::cout << "Grille redimensionnee: " << newWidth << "x" << newHeight << std::endl;
+}
+
+void GUIController::increaseGridSize(int amount) {
+    resizeGrid(m_game.getGrid().getWidth() + amount, m_game.getGrid().getHeight() + amount);
+}
+
+void GUIController::decreaseGridSize(int amount) {
+    resizeGrid(m_game.getGrid().getWidth() - amount, m_game.getGrid().getHeight() - amount);
 }

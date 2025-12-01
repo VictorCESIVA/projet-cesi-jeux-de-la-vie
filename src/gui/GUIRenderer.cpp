@@ -85,7 +85,7 @@ void GUIRenderer::render(const Grid& grid) {
 }
 
 void GUIRenderer::renderInfoPanel(int iteration, bool running, int speed, bool toroidal, bool parallel,
-                                   int aliveCells, bool stable) {
+                                   int aliveCells, bool stable, int gridWidth, int gridHeight) {
     // Fond du panneau supérieur
     sf::RectangleShape panel(sf::Vector2f(static_cast<float>(m_window.getSize().x), 
                                           static_cast<float>(m_offsetY)));
@@ -97,10 +97,10 @@ void GUIRenderer::renderInfoPanel(int iteration, bool running, int speed, bool t
     // Texte d'information
     std::ostringstream info;
     info << "Gen: " << iteration;
-    info << "  |  Cellules: " << aliveCells;
+    info << "  |  Vivantes: " << aliveCells;
+    info << "  |  Grille: " << gridWidth << "x" << gridHeight;
     info << "  |  " << (running ? "EN COURS" : "PAUSE");
     if (stable && iteration > 0) info << "  |  STABLE";
-    info << "  |  " << speed << "ms";
     
     sf::Text text;
     text.setFont(m_font);
@@ -114,7 +114,7 @@ void GUIRenderer::renderInfoPanel(int iteration, bool running, int speed, bool t
     std::ostringstream opts;
     if (toroidal) opts << "[Torique] ";
     if (parallel) opts << "[Parallele] ";
-    opts << "Zoom: " << m_cellSize << "px";
+    opts << "Vitesse: " << speed << "ms  |  Zoom: " << m_cellSize << "px";
     
     sf::Text optsText;
     optsText.setFont(m_font);
@@ -127,10 +127,10 @@ void GUIRenderer::renderInfoPanel(int iteration, bool running, int speed, bool t
     // Instructions rapides
     sf::Text quickHelp;
     quickHelp.setFont(m_font);
-    quickHelp.setString("[ESPACE] Play  [F5] Sauver  [H] Aide  [Molette] Zoom");
+    quickHelp.setString("[ESPACE] Play  [[] Taille  [H] Aide");
     quickHelp.setCharacterSize(10);
     quickHelp.setFillColor(sf::Color(120, 120, 120));
-    quickHelp.setPosition(static_cast<float>(m_window.getSize().x - 320), 18.f);
+    quickHelp.setPosition(static_cast<float>(m_window.getSize().x - 220), 18.f);
     m_window.draw(quickHelp);
 }
 
@@ -332,6 +332,25 @@ void GUIRenderer::renderSidePanel(const std::string& selectedPattern, bool toroi
     m_window.draw(mouseInfo);
     yPos += 70.f;
     
+    // Section Grille
+    sf::Text gridSection;
+    gridSection.setFont(m_font);
+    gridSection.setString("TAILLE GRILLE");
+    gridSection.setCharacterSize(12);
+    gridSection.setFillColor(sf::Color(100, 100, 100));
+    gridSection.setPosition(xMargin, yPos);
+    m_window.draw(gridSection);
+    yPos += 20.f;
+    
+    sf::Text gridInfo;
+    gridInfo.setFont(m_font);
+    gridInfo.setString("[ ] Reduire/Agrandir\nCtrl+Fleches: W/H");
+    gridInfo.setCharacterSize(10);
+    gridInfo.setFillColor(sf::Color(150, 150, 150));
+    gridInfo.setPosition(xMargin, yPos);
+    m_window.draw(gridInfo);
+    yPos += 35.f;
+    
     // Section Fichier
     sf::Text fileSection;
     fileSection.setFont(m_font);
@@ -379,24 +398,26 @@ void GUIRenderer::renderHelp() {
         "- Cellule vivante + 2-3 voisins = survit\n"
         "- Sinon = meurt\n\n"
         "CONTROLES CLAVIER:\n"
-        "  ESPACE    Demarrer/Pause\n"
-        "  S         Avancer 1 iteration\n"
-        "  C         Effacer la grille\n"
-        "  R         Reinitialiser\n"
-        "  +/-       Ajuster vitesse\n"
-        "  G         Afficher/Masquer grille\n"
-        "  T         Mode torique ON/OFF\n"
-        "  P         Calcul parallele ON/OFF\n"
-        "  1-9       Selectionner pattern\n"
-        "  F5        Sauvegarder etat\n"
-        "  H         Cette aide\n"
-        "  ESC       Quitter\n\n"
+        "  ESPACE      Demarrer/Pause\n"
+        "  S           Avancer 1 iteration\n"
+        "  C           Effacer la grille\n"
+        "  R           Reinitialiser\n"
+        "  +/-         Ajuster vitesse\n"
+        "  G           Afficher/Masquer grille\n"
+        "  T           Mode torique ON/OFF\n"
+        "  P           Calcul parallele ON/OFF\n"
+        "  [ ]         Reduire/Agrandir grille\n"
+        "  Ctrl+Fleches  Taille largeur/hauteur\n"
+        "  1-9         Selectionner pattern\n"
+        "  F5          Sauvegarder etat\n"
+        "  H           Cette aide\n"
+        "  ESC         Quitter\n\n"
         "SOURIS:\n"
-        "  Clic gauche      Placer pattern\n"
-        "  Shift + Clic     Activer 1 cellule\n"
-        "  Ctrl + Clic      Creer obstacle\n"
-        "  Clic droit       Desactiver cellule\n"
-        "  Molette          Zoom +/-\n\n"
+        "  Clic gauche    Placer pattern\n"
+        "  Shift+Clic     Activer 1 cellule\n"
+        "  Ctrl+Clic      Creer obstacle\n"
+        "  Clic droit     Supprimer cellule\n"
+        "  Molette        Zoom +/-\n\n"
         "Appuyez sur H pour fermer";
     
     sf::Text text;

@@ -6,6 +6,8 @@ CMakeFiles/gameoflife_gui.dir/src/gui/GUIController.cpp.obj: C:/Users/noela/Docu
   C:/Users/noela/Documents/projet-cesi-jeux-de-la-vie/include/cell/Cell.hpp \
   C:/Users/noela/Documents/projet-cesi-jeux-de-la-vie/include/cell/CellState.hpp \
   C:/Users/noela/Documents/projet-cesi-jeux-de-la-vie/include/cell/DeadState.hpp \
+  C:/Users/noela/Documents/projet-cesi-jeux-de-la-vie/include/cell/ObstacleAliveState.hpp \
+  C:/Users/noela/Documents/projet-cesi-jeux-de-la-vie/include/cell/ObstacleDeadState.hpp \
   C:/Users/noela/Documents/projet-cesi-jeux-de-la-vie/include/game/Game.hpp \
   C:/Users/noela/Documents/projet-cesi-jeux-de-la-vie/include/grid/Grid.hpp \
   C:/Users/noela/Documents/projet-cesi-jeux-de-la-vie/include/gui/GUIController.hpp \
@@ -960,9 +962,13 @@ C:/msys64/mingw64/include/c++/15.2.0/x86_64-w64-mingw32/bits/gthr.h:
 
 C:/msys64/mingw64/include/c++/15.2.0/x86_64-w64-mingw32/bits/error_constants.h:
 
-C:/Users/noela/Documents/projet-cesi-jeux-de-la-vie/include/cell/Cell.hpp:
+C:/msys64/mingw64/include/c++/15.2.0/x86_64-w64-mingw32/bits/ctype_base.h:
 
-C:/msys64/mingw64/include/c++/15.2.0/bits/erase_if.h:
+C:/msys64/mingw64/include/c++/15.2.0/x86_64-w64-mingw32/bits/ctype_inline.h:
+
+C:/msys64/mingw64/include/c++/15.2.0/x86_64-w64-mingw32/bits/cpu_defines.h:
+
+C:/Users/noela/Documents/projet-cesi-jeux-de-la-vie/include/cell/Cell.hpp:
 
 C:/msys64/mingw64/include/c++/15.2.0/bits/cxxabi_init_exception.h:
 
@@ -1074,6 +1080,16 @@ C:/msys64/mingw64/include/SFML/System/Time.hpp:
 
 C:/msys64/mingw64/include/c++/15.2.0/bits/fs_fwd.h:
 
+C:/msys64/mingw64/include/SFML/System/Thread.inl:
+
+C:/msys64/mingw64/include/SFML/System/Thread.hpp:
+
+C:/msys64/mingw64/include/c++/15.2.0/bits/atomic_lockfree_defines.h:
+
+C:/msys64/mingw64/include/c++/15.2.0/bits/stl_heap.h:
+
+C:/msys64/mingw64/include/c++/15.2.0/concepts:
+
 C:/msys64/mingw64/include/SFML/Graphics/RectangleShape.hpp:
 
 C:/msys64/mingw64/include/SFML/Graphics/Image.hpp:
@@ -1118,14 +1134,6 @@ C:/msys64/mingw64/include/SFML/Graphics/Glyph.hpp:
 
 C:/msys64/mingw64/include/c++/15.2.0/bits/stl_iterator_base_funcs.h:
 
-C:/msys64/mingw64/include/SFML/System/Thread.hpp:
-
-C:/msys64/mingw64/include/c++/15.2.0/bits/atomic_lockfree_defines.h:
-
-C:/msys64/mingw64/include/c++/15.2.0/bits/stl_heap.h:
-
-C:/msys64/mingw64/include/c++/15.2.0/concepts:
-
 C:/msys64/mingw64/include/SFML/Graphics/Transform.hpp:
 
 C:/msys64/mingw64/include/c++/15.2.0/pstl/pstl_config.h:
@@ -1133,6 +1141,8 @@ C:/msys64/mingw64/include/c++/15.2.0/pstl/pstl_config.h:
 C:/msys64/mingw64/include/c++/15.2.0/vector:
 
 C:/msys64/mingw64/include/SFML/Graphics.hpp:
+
+C:/Users/noela/Documents/projet-cesi-jeux-de-la-vie/include/cell/ObstacleAliveState.hpp:
 
 C:/Users/noela/Documents/projet-cesi-jeux-de-la-vie/src/gui/GUIController.cpp:
 
@@ -1150,11 +1160,7 @@ C:/Users/noela/Documents/projet-cesi-jeux-de-la-vie/include/cell/AliveState.hpp:
 
 C:/msys64/mingw64/include/SFML/Graphics/RenderTexture.hpp:
 
-C:/Users/noela/Documents/projet-cesi-jeux-de-la-vie/include/patterns/Patterns.hpp:
-
-C:/msys64/mingw64/include/SFML/Graphics/Rect.inl:
-
-C:/msys64/mingw64/include/SFML/System/Thread.inl:
+C:/Users/noela/Documents/projet-cesi-jeux-de-la-vie/include/rules/Rule.hpp:
 
 C:/msys64/mingw64/include/crtdefs.h:
 
@@ -1168,8 +1174,6 @@ C:/msys64/mingw64/include/SFML/Graphics/Drawable.hpp:
 
 C:/msys64/mingw64/include/SFML/Graphics/Text.hpp:
 
-C:/msys64/mingw64/include/c++/15.2.0/x86_64-w64-mingw32/bits/ctype_base.h:
-
 C:/msys64/mingw64/include/malloc.h:
 
 C:/msys64/mingw64/include/SFML/Graphics/Shader.hpp:
@@ -1177,6 +1181,12 @@ C:/msys64/mingw64/include/SFML/Graphics/Shader.hpp:
 C:/msys64/mingw64/include/SFML/Graphics/Texture.hpp:
 
 C:/Users/noela/Documents/projet-cesi-jeux-de-la-vie/include/grid/Grid.hpp:
+
+C:/msys64/mingw64/include/c++/15.2.0/bits/erase_if.h:
+
+C:/Users/noela/Documents/projet-cesi-jeux-de-la-vie/include/cell/ObstacleDeadState.hpp:
+
+C:/msys64/mingw64/include/c++/15.2.0/ext/type_traits.h:
 
 C:/Users/noela/Documents/projet-cesi-jeux-de-la-vie/include/gui/GUIController.hpp:
 
@@ -1202,7 +1212,9 @@ C:/msys64/mingw64/include/SFML/Graphics/ConvexShape.hpp:
 
 C:/msys64/mingw64/include/SFML/System/MemoryInputStream.hpp:
 
-C:/Users/noela/Documents/projet-cesi-jeux-de-la-vie/include/rules/Rule.hpp:
+C:/Users/noela/Documents/projet-cesi-jeux-de-la-vie/include/patterns/Patterns.hpp:
+
+C:/msys64/mingw64/include/SFML/Graphics/Rect.inl:
 
 C:/msys64/mingw64/include/c++/15.2.0/x86_64-w64-mingw32/bits/os_defines.h:
 
@@ -1462,8 +1474,6 @@ C:/msys64/mingw64/include/c++/15.2.0/ext/numeric_traits.h:
 
 C:/msys64/mingw64/include/c++/15.2.0/ratio:
 
-C:/msys64/mingw64/include/c++/15.2.0/ext/type_traits.h:
-
 C:/msys64/mingw64/include/c++/15.2.0/iomanip:
 
 C:/msys64/mingw64/include/c++/15.2.0/ios:
@@ -1485,10 +1495,6 @@ C:/msys64/mingw64/include/c++/15.2.0/map:
 C:/msys64/mingw64/include/c++/15.2.0/memory:
 
 C:/msys64/mingw64/include/c++/15.2.0/new:
-
-C:/msys64/mingw64/include/c++/15.2.0/x86_64-w64-mingw32/bits/ctype_inline.h:
-
-C:/msys64/mingw64/include/c++/15.2.0/x86_64-w64-mingw32/bits/cpu_defines.h:
 
 C:/msys64/mingw64/include/SFML/Graphics/Transformable.hpp:
 

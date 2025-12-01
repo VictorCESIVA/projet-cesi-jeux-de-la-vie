@@ -50,9 +50,11 @@ public:
      * @param parallel Mode parallèle actif
      * @param aliveCells Nombre de cellules vivantes
      * @param stable L'automate est stable
+     * @param gridWidth Largeur de la grille
+     * @param gridHeight Hauteur de la grille
      */
     void renderInfoPanel(int iteration, bool running, int speed, bool toroidal, bool parallel, 
-                         int aliveCells, bool stable);
+                         int aliveCells, bool stable, int gridWidth, int gridHeight);
     
     /**
      * @brief Dessine le panneau latéral avec les options

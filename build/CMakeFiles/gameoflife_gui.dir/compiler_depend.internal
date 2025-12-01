@@ -7,6 +7,8 @@ CMakeFiles/gameoflife_gui.dir/src/gui/GUIController.cpp.obj
  C:/Users/noela/Documents/projet-cesi-jeux-de-la-vie/include/cell/Cell.hpp
  C:/Users/noela/Documents/projet-cesi-jeux-de-la-vie/include/cell/CellState.hpp
  C:/Users/noela/Documents/projet-cesi-jeux-de-la-vie/include/cell/DeadState.hpp
+ C:/Users/noela/Documents/projet-cesi-jeux-de-la-vie/include/cell/ObstacleAliveState.hpp
+ C:/Users/noela/Documents/projet-cesi-jeux-de-la-vie/include/cell/ObstacleDeadState.hpp
  C:/Users/noela/Documents/projet-cesi-jeux-de-la-vie/include/game/Game.hpp
  C:/Users/noela/Documents/projet-cesi-jeux-de-la-vie/include/grid/Grid.hpp
  C:/Users/noela/Documents/projet-cesi-jeux-de-la-vie/include/gui/GUIController.hpp

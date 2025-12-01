@@ -108,6 +108,25 @@ private:
      * @param event Événement souris
      */
     void handleMouseWheel(const sf::Event& event);
+    
+    /**
+     * @brief Redimensionne la grille
+     * @param newWidth Nouvelle largeur
+     * @param newHeight Nouvelle hauteur
+     */
+    void resizeGrid(int newWidth, int newHeight);
+    
+    /**
+     * @brief Augmente la taille de la grille
+     * @param amount Nombre de cellules à ajouter
+     */
+    void increaseGridSize(int amount = 10);
+    
+    /**
+     * @brief Diminue la taille de la grille
+     * @param amount Nombre de cellules à retirer
+     */
+    void decreaseGridSize(int amount = 10);
 };
 
 #endif // GUICONTROLLER_HPP
